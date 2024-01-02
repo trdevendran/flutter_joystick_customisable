@@ -1,16 +1,6 @@
 # flutter_joystick_customisable
 
-A Flutter plugin for joystick with customisable options by a single widget as below,
-```dart
-Joystick(dragCallback: (DragInfo? dragInfo) {
-    setState(() {
-      _dragInfo = dragInfo;
-    });
-  }
-)
-```
-
-You can enable the button controls at out side of the drag pad and can use the custom properties as below,
+A Flutter plugin for joystick with customisable options with custom properties as below,
 
 ```dart
 Joystick(
@@ -30,6 +20,19 @@ Joystick(
 )
 ```
 
+<img src="https://github.com/trdevendran/flutter_joystick_customisable/assets/12223179/371b06e1-aed5-4249-a9da-c9f70d7d70a4" alt="drawing" style="width:380px;height:780px" />
+
+You can enable the button controls at out side of the drag pad and with default properties as below,
+
+```dart
+Joystick(dragCallback: (DragInfo? dragInfo) {
+    setState(() {
+      _dragInfo = dragInfo;
+    });
+  },
+    enableButtonControls: true,
+)
+```
 [Screen_recording_20240102_074118.webm](https://github.com/trdevendran/flutter_joystick_customisable/assets/12223179/d5c4f007-63cf-430b-826c-74e214527eb2)
 
 ## Getting Started
@@ -46,6 +49,7 @@ Joystick is stateful widget to display the UI of the customisable joystick which
 |    onDragStart     |      Function       | Callback, which is called when the stick starts dragging.                                                                                                                    |
 |     onDragEnd      |      Function       | Callback, which is called when the stick released.                                                                                                                           |
 |    dragCallback    | `StickDragCallback` | Callback, which is called with `timeFrequency` when the stick is dragged.                                                                                                    |
+|    enableButtonControls    | bool | Enable the button controls at out side of the drag pad.                                                                                                  |
 
 ```dart
 import 'package:flutter/material.dart';
