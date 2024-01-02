@@ -1,6 +1,8 @@
 name: flutter_joystick_customisable
-description: "A Flutter plugin for joystick with customisable options."
-version: 0.0.1
+description: "A Flutter plugin for joystick with customisable options. 
+This library is mainly adapt with app based theme such as changing color drag pad, boundary region, stick/ball and button controllers.
+Also direction of the drag and velocity of the drag can be handled via callback method to achieve our business logics."
+version: 0.2.0
 homepage: https://github.com/trdevendran/flutter_joystick_customisable.git
 repository: https://github.com/trdevendran/flutter_joystick_customisable.git
 

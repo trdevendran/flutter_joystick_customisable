@@ -21,10 +21,10 @@ class Joystick extends StatefulWidget {
   /// Frequency of calling [dragCallback] from the moment the stick is dragged.
   final Duration timeFrequency;
 
-  /// Widget that renders joystick base, by default [DragPad].
+  /// Widget that renders joystick base, by default [DragPad] will take care of this part and the size of this widget will be varied based on the stick/ball size.
   final Widget? draggableContainer;
 
-  /// Specifies color of the [DragPad].
+  /// Specifies the color of the [DragPad].
   final Color dragPadColor;
 
   /// Controller allows to control joystick events outside the widget.
@@ -38,6 +38,8 @@ class Joystick extends StatefulWidget {
 
   /// Callback, which is called with [timeFrequency] when the stick is dragged.
   final StickDragCallback dragCallback;
+
+  final bool enableButtonControls;
 
   const Joystick({
     super.key,
@@ -53,6 +55,7 @@ class Joystick extends StatefulWidget {
 
     /// Size of the stick/ball is by default 100 pixel.
     this.stickSize = 100,
+    this.enableButtonControls = false,
   });
 
   @override
@@ -92,40 +95,42 @@ class _JoystickState extends State<Joystick> {
             borderRadius: BorderRadius.circular(draggableContainerSize / 2),
             border: Border.all(color: Colors.white, width: 4)),
       )),
-      SizedBox(
-          width: spaceBetweenArrows,
-          height: spaceBetweenArrows,
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TriangleShape(
-                direction: Direction.left,
-              ),
-              TriangleShape(
-                direction: Direction.right,
+      widget.enableButtonControls
+          ? SizedBox(
+              width: spaceBetweenArrows,
+              height: spaceBetweenArrows,
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TriangleShape(
+                    direction: Direction.left,
+                  ),
+                  TriangleShape(
+                    direction: Direction.right,
+                  )
+                ],
+              ))
+          : const Spacer(),
+      widget.enableButtonControls
+          ? SizedBox(
+              width: spaceBetweenArrows,
+              height: spaceBetweenArrows,
+              child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TriangleShape(),
+                    TriangleShape(
+                      direction: Direction.bottom,
+                    )
+                  ])
+              // )
               )
-            ],
-          )),
-      SizedBox(
-          width: spaceBetweenArrows,
-          height: spaceBetweenArrows,
-          child: const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TriangleShape(),
-                TriangleShape(
-                  direction: Direction.bottom,
-                )
-              ])
-          // )
-          ),
+          : const Spacer(),
       Stack(alignment: Alignment(_stickOffset.dx, _stickOffset.dy), children: [
         Container(
           key: _baseKey,
           child: widget.draggableContainer ??
-              DragPad(
-                  size: draggableContainerSize,
-                  color: widget.dragPadColor),
+              DragPad(size: draggableContainerSize, color: widget.dragPadColor),
         ),
         GestureDetector(
             onPanStart: (details) => _stickDragStart(details.globalPosition),

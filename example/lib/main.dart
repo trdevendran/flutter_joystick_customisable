@@ -38,12 +38,19 @@ class _MyAppState extends State<MyApp> {
                   style: const TextStyle(color: Colors.white),
                 ),
                 Joystick(
-                  dragCallback: (DragInfo? coordinates) {
-                    setState(() {
-                      _dragInfo = coordinates;
-                    });
-                  },
-                )
+                    stickSize: 50,
+                    dragPadColor: Colors.red,
+                    onDragStart: () {
+                      // You can use this callback for your business case when the stick/ball start dragging
+                    },
+                    onDragEnd: () {
+                      // You can use this callback for your business case when the stick/ball stop dragging
+                    },
+                    dragCallback: (DragInfo? dragInfo) {
+                      setState(() {
+                        _dragInfo = dragInfo;
+                      });
+                    })
               ],
             ))),
       ),
