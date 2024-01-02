@@ -1,0 +1,21 @@
+name: flutter_joystick_customisable
+description: "A Flutter plugin for joystick with customisable options."
+version: 0.0.1
+homepage: https://github.com/trdevendran/flutter_joystick_customisable.git
+repository: https://github.com/trdevendran/flutter_joystick_customisable.git
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.1.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
